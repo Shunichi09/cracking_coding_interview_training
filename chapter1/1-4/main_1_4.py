@@ -1,21 +1,21 @@
 import argparse
 
-def main_py(strings):
+def main_py(string):
     """
     Parameters
     -----------
     """
     # strings = list(strings).replace(' ')
-    strings = strings.split(" ")
+    string = string.split(" ")
     
     concated_string = ""
 
-    for string in strings:
-        if not string == "":
-            if not string is strings[-1]:
-                string += "%20"
+    for char in string:
+        if not char == "":
+            if not char is string[-1]:
+                char += "%20"
             
-            concated_string += string
+            concated_string += char
     
     return concated_string
 

@@ -1,46 +1,46 @@
 import argparse
 
-def main_py(strings):
+
+def main_py(string):
     """
     Parameters
     -----------
     """
-    original_strings = strings
-    strings = list(strings)
-    
-    str_length = len(strings)
-    str_count = 1
-    current_str = strings[0]
-    concated_strings = ''
+    original_string = string
+    string = list(string)
 
-    for j, string in enumerate(strings[1:]):
-        if not current_str == string:
-            temp_str = current_str + str(str_count)
-            concated_strings += temp_str
-            # reset
-            str_count = 1
-            current_str = string
+    str_length = len(string)
+    char_count = 1
+    current_char = string[0]
+    concated_string = ''
 
-        elif j+2 == str_length:  # last
-            temp_str = current_str + str(str_count + 1)
-            concated_strings += temp_str
-        
+    for char in string[1:]:
+        if current_char == char:
+            char_count += 1
         else:
-            str_count += 1
-    
-    print(concated_strings)
+            temp_char = current_char + str(char_count)
+            concated_string += temp_char
+            # reset
+            char_count = 1
+            current_char = char
 
-    if len(list(concated_strings)) >= str_length:
-        return original_strings
-    
+    # last
+    temp_char = current_char + str(char_count)
+    concated_string += temp_char
 
-    return concated_strings
+    print(concated_string)
+
+    if len(list(concated_string)) >= str_length:
+        return original_string
+
+    return concated_string
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # python
-    parser.add_argument('-t', '--prog_type', type=str, default="py")  # 実行するプログラムタイプ
+    parser.add_argument('-t', '--prog_type', type=str, default="py")
     args = parser.parse_args()
 
     case_1 = "aabcccccaaa"
@@ -48,8 +48,7 @@ if __name__ == "__main__":
     case_3 = "acb"
 
     if args.prog_type == "py":
-        # assert main_py(case_1) == "a2b1c5a3", "error"
-        # assert main_py(case_2) == "a3c2b2", "error"
+        assert main_py(case_1) == "a2b1c5a3", "error"
+        assert main_py(case_2) == "a3c2b2", "error"
         assert main_py(case_3) == "acb", "error"
-
         print("clear!!")
